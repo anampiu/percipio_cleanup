@@ -11,19 +11,19 @@ if all(col in df.columns for col in columns_to_move):
     other_columns = [col for col in df. columns if col not in  columns_to_move]
     new_column_order = columns_to_move + other_columns
     df = df[new_column_order]
-df.to_csv('reordered_colums.csv', index=False)
+df.to_csv('ebu_reordered_colums.csv', index=False)
 
 print("Columns have be reorderd and Clean up is ongoing...")
 
-#Filter for BD team courses
-data = pd.read_csv('./reordered_colums.csv')
+#Filter for FS team courses
+data = pd.read_csv('./ebu_reordered_colums.csv')
 
 course_groups = {
     'AI':['Artificial Intelligence for Associates 101','Artificial Intelligence For Executive Leaders','Artificial Intelligence for Leaders','Artificial Intelligence for Practitioners'],
-    'HCD': ['Human Centered Design For Leaders','Human Centered Design For Professionals','Human Centred Design For Associates (101)','Human Centred Design For Practitioners'],
-    'Business Communication': ['Business Communication & Critical Business Thinking 101']
+    'Data Analytics':['Big Data & Analytics for Leaders','Big Data & Analytics for Practitioners','Big Data & Analytics for Professionals','Data Analytics for Associates (101)'],
+    'Commercial Management': ['Commercial Management 101'],
 }
-with pd.ExcelWriter('remove_duplicates.xlsx') as writer:
+with pd.ExcelWriter('ebu_remove_duplicates.xlsx') as writer:
     sheet_written = False
 
     for group_name, courses in course_groups.items():
@@ -35,13 +35,13 @@ with pd.ExcelWriter('remove_duplicates.xlsx') as writer:
     if not sheet_written:
         raise ValueError("No data was written to any sheets, check your filtering logic.")
     
-print("The Business Development team report is almost ready...")
+print("The Financial Services team report is almost ready...")
 
 # Remove duplicates for the team
-file_path = './remove_duplicates.xlsx'  # Path to your Excel file
+file_path = './ebu_remove_duplicates.xlsx'  # Path to your Excel file
 excel_data = pd.read_excel(file_path, sheet_name=None)  
 
-output_file_path = 'BD_cleaned_data.xlsx' 
+output_file_path = './cleaned/EBU_cleaned_data.xlsx' 
 with pd.ExcelWriter(output_file_path, engine='openpyxl') as writer:
     # Process each sheet
     for sheet_name, df in excel_data.items():
