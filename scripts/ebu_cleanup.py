@@ -11,26 +11,19 @@ if all(col in df.columns for col in columns_to_move):
     other_columns = [col for col in df. columns if col not in  columns_to_move]
     new_column_order = columns_to_move + other_columns
     df = df[new_column_order]
-df.to_csv('fs_reordered_colums.csv', index=False)
+df.to_csv('./temp/ebu_reordered_colums.csv', index=False)
 
-print("Columns have be reorderd and Clean up is ongoing...")
+print("EBU report clean up is ongoing...")
 
 #Filter for FS team courses
-data = pd.read_csv('./fs_reordered_colums.csv')
+data = pd.read_csv('./temp/ebu_reordered_colums.csv')
 
 course_groups = {
     'AI':['Artificial Intelligence for Associates 101','Artificial Intelligence For Executive Leaders','Artificial Intelligence for Leaders','Artificial Intelligence for Practitioners'],
-    'HCD':['Human Centered Design For Leaders','Human Centered Design For Professionals','Human Centred Design For Associates (101)','Human Centred Design For Practitioners'],
     'Data Analytics':['Big Data & Analytics for Leaders','Big Data & Analytics for Practitioners','Big Data & Analytics for Professionals','Data Analytics for Associates (101)'],
-    'RPA':['Robotic Process Automation for Associates','Robotic Process Automation for Leaders','Robotic Process Automation for Practitioners','Robotic Process Automation for Professionals'],
-    'ML': ['Machine Learning For Associates (101)','Machine Learning For Leaders','Machine Learning For Practitioners','Machine Learning For Professionals'],
-    'Programming': ['Java Programming 101','Python Programming 101'],
-    'Business Process Modelling': ['Business Process Modelling 101'],
-    'Digital Product Management': ['Digital Product Management 101'],
     'Commercial Management': ['Commercial Management 101'],
-    'Digital Lending':['Digital Lending'],
 }
-with pd.ExcelWriter('fs_remove_duplicates.xlsx') as writer:
+with pd.ExcelWriter('./temp/ebu_remove_duplicates.xlsx') as writer:
     sheet_written = False
 
     for group_name, courses in course_groups.items():
@@ -42,13 +35,13 @@ with pd.ExcelWriter('fs_remove_duplicates.xlsx') as writer:
     if not sheet_written:
         raise ValueError("No data was written to any sheets, check your filtering logic.")
     
-print("The Financial Services team report is almost ready...")
+print("...")
 
 # Remove duplicates for the team
-file_path = './fs_remove_duplicates.xlsx'  # Path to your Excel file
+file_path = './temp/ebu_remove_duplicates.xlsx'  # Path to your Excel file
 excel_data = pd.read_excel(file_path, sheet_name=None)  
 
-output_file_path = './cleaned/FS_cleaned_data.xlsx' 
+output_file_path = './cleaned/EBU_cleaned_data.xlsx' 
 with pd.ExcelWriter(output_file_path, engine='openpyxl') as writer:
     # Process each sheet
     for sheet_name, df in excel_data.items():
@@ -69,4 +62,4 @@ with pd.ExcelWriter(output_file_path, engine='openpyxl') as writer:
         # Write the processed DataFrame to the new Excel file
         df.to_excel(writer, index=False, sheet_name=sheet_name)  # Write each DataFrame to a separate sheet
 
-print(f"Cleaned data saved as '{output_file_path}'")
+print(f"EBU cleaned data saved to '{output_file_path}'")
