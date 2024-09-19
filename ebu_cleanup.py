@@ -35,7 +35,7 @@ with pd.ExcelWriter('ebu_remove_duplicates.xlsx') as writer:
     if not sheet_written:
         raise ValueError("No data was written to any sheets, check your filtering logic.")
     
-print("The Financial Services team report is almost ready...")
+print("The Enterprise Business Unit team report is almost ready...")
 
 # Remove duplicates for the team
 file_path = './ebu_remove_duplicates.xlsx'  # Path to your Excel file
