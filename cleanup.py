@@ -32,8 +32,8 @@ try:
     subprocess.run(['python3', './scripts/bd_report.py'], check=True)
     subprocess.run(['python3', './scripts/ebu_cleanup.py'], check=True)
     subprocess.run(['python3', './scripts/ebu_report.py'], check=True)
-
-    # subprocess.run(['python3', './scripts/fs_cleanup.py'], check=True)
+    subprocess.run(['python3', './scripts/fs_cleanup.py'], check=True)
+    subprocess.run(['python3', './scripts/fs_report.py'], check=True)
     
     print("All scripts ran successfully.")
 except subprocess.CalledProcessError as e:

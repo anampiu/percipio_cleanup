@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 # Step 1: Convert the executive report from XLSX to CSV
-excel_file_path = './ebu_executive_report.xlsx'
+excel_file_path = './executive_reports/ebu_executive_report.xlsx'
 csv_file_path = './temp/ebu_executive_report.csv'  
 df_excel = pd.read_excel(excel_file_path)
 df_excel.to_csv(csv_file_path, index=False)
@@ -75,5 +75,5 @@ for group_name in course_groups.keys():
         # Save the cleaned data back as CSV
         cleaned_file_path = f'{output_directory}/{group_name}_cleaned.csv'
         df.to_csv(cleaned_file_path, index=False)
-        print(f"Cleaned data saved to '{cleaned_file_path}'")
+        print(f"EBU cleaned data saved to '{cleaned_file_path}'")
 
