@@ -3,4 +3,4 @@
 *.ipynb
 /myenv/
 *.zip
-data.csv.csv:Zone.Identifier
+*.Identifier

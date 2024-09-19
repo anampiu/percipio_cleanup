@@ -4,7 +4,7 @@ file_path =  './data.csv'
 df = pd.read_csv(file_path)
 
 #Moving vlookup colums to the first and second
-columns_to_move = ['USER ID','JOURNEY TITLE']
+columns_to_move = ['USER ID','JOURNEY STATUS']
 
 if all(col in df.columns for col in columns_to_move):
 
@@ -23,6 +23,7 @@ course_groups = {
     'HCD':['Human Centered Design For Leaders','Human Centered Design For Professionals','Human Centred Design For Associates (101)','Human Centred Design For Practitioners'],
     'Data Analytics':['Big Data & Analytics for Leaders','Big Data & Analytics for Practitioners','Big Data & Analytics for Professionals','Data Analytics for Associates (101)'],
     'RPA':['Robotic Process Automation for Associates','Robotic Process Automation for Leaders','Robotic Process Automation for Practitioners','Robotic Process Automation for Professionals'],
+    'ML': ['Machine Learning For Associates (101)','Machine Learning For Leaders','Machine Learning For Practitioners','Machine Learning For Professionals'],
     'Programming': ['Java Programming 101','Python Programming 101'],
     'Business Process Modelling': ['Business Process Modelling 101'],
     'Digital Product Management': ['Digital Product Management 101'],

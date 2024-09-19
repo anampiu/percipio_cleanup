@@ -4,7 +4,7 @@ file_path =  './data.csv'
 df = pd.read_csv(file_path)
 
 #Moving vlookup colums to the first and second
-columns_to_move = ['USER ID','JOURNEY TITLE']
+columns_to_move = ['USER ID','JOURNEY STATUS']
 
 if all(col in df.columns for col in columns_to_move):
 
