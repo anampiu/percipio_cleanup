@@ -66,6 +66,10 @@ for group_name, courses in course_groups.items():
         group_data.to_csv(group_file_path, index=False)
         print(f"{group_name} data saved to {group_file_path}")
 
+if group_data.empty:
+    print(f"⚠️ Warning: {group_name} has no data. Creating an empty file to prevent errors.")
+
+
 print("Course filtering and updating complete.")
 
 # Step 4: Remove duplicates for each course and save cleaned data as CSV

@@ -32,10 +32,22 @@ course_columns = {
 }
 
 # Iterate through each course file
-for course_file, report_column in course_columns.items():
-    course_df = pd.read_csv(course_file)
+missing_courses = []  # Store missing files
 
-    # Step 5: Update the executive report
+for course_file, report_column in course_columns.items():
+    if not os.path.exists(course_file):
+        missing_courses.append(report_column)  # Store course name, not file path
+        continue  # Skip this file
+    
+    course_df = pd.read_csv(course_file)
+    # Process the course data as usual...
+
+# Save missing courses info to a temporary file so Streamlit can read it
+with open("./temp/missing_courses.txt", "w") as f:
+    for course in missing_courses:
+        f.write(course + "\n")
+
+    # Update the executive report
     for idx, row in course_df.iterrows():
         user_email = row['USER ID']
         journey_status = row['JOURNEY STATUS']
@@ -55,3 +67,4 @@ for course_file, report_column in course_columns.items():
 
 # Save the updated executive report
 exec_report_df.to_csv('./reports/updated_executive_report.csv', index=False)
+
