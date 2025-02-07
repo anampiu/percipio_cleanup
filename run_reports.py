@@ -20,7 +20,7 @@ delete_files('./reports')
 # Now call the scripts in sequence
 try:
     subprocess.run(['python3', './scripts/report_cleanup.py'], check=True)
-    subprocess.run(['python3', './scripts/report_update.py'], check=True)
+    # subprocess.run(['python3', './scripts/report_update.py'], check=True)
     
     print("All scripts ran successfully.")
 except subprocess.CalledProcessError as e:
